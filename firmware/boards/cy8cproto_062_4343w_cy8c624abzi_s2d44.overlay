@@ -1,0 +1,13 @@
+/* PSoC 62 Cortex-M4 image: keep clear of the Cortex-M0+ core's RAM (2026-11-11).
+ *
+ * The board boots the prebuilt M0+ "sleep" image first (CONFIG_SOC_PSOC6_CM0P_IMAGE_SLEEP=y,
+ * CONFIG_SOC_PSOC6_CM0P_IMAGE_RAM_SIZE=0x2000). That image's initial stack pointer is 0x08002000
+ * (seen by OpenOCD at reset), i.e. it owns SRAM 0x08000000..0x08001FFF. Stock Zephyr gives the M4
+ * the whole 1 MB from 0x08000000, so every M4 image placed its own RAM there -- in the hybrid, the
+ * first 8 KB of the crypto code block. The M4's MPU cannot stop the other core, so "read-only
+ * crypto code" was not guaranteed against it. The M4 now starts at 0x08002000, the same split
+ * Infineon's own dual-core layouts use. Applied automatically to every build for this board target.
+ * (The unit address in the node name stays memory@8000000; dtc may warn about it -- harmless.) */
+&sram0 {
+	reg = <0x08002000 0xFE000>;
+};

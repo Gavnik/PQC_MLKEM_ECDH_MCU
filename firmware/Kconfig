@@ -1,0 +1,41 @@
+# Application Kconfig for the PQC benchmark.
+# A Kconfig file in the application root becomes the root of the Kconfig tree, so it MUST
+# source the Zephyr Kconfig first (keeps every normal symbol available), then add ours.
+source "Kconfig.zephyr"
+
+config PQC_WX
+	bool "Apply our own boot-time W^X (RP2350 Hazard3 PMP / ESP32-S3 PMS)"
+	default n
+	help
+	  For the two cores whose memory protection is NOT Zephyr's MPU driver. When y, main()
+	  applies W^X once at boot, before any benchmark command:
+	    hz3 (RP2350 Hazard3): LOCKED NAPOT PMP entries -- relocated crypto code R+X,
+	      relocated crypto tables R only, rest of SRAM R+W no-exec, flash XIP R+X
+	      (RP2350 erratum E6 R<->X swap applied). The RP2350 port enables no Zephyr PMP,
+	      and Zephyr's generic PMP driver cannot express this policy on this core (its
+	      no-execute background would be broken by E6; it knows no relocated blocks).
+	    lx7 (ESP32-S3): PMS via Espressif's header-only memprot_ll helpers -- IRAM code R+X,
+	      the crypto tables block in DRAM R only (DRAM0 split lines D_0/D_1), rest of DRAM
+	      R+W, no execute from the data side.
+	  Set in the hz3 and ESP32 board confs so flash AND hybrid images are protected, matching
+	  the Arm cores (Zephyr MPU on in every build). The firmware reports what is live as wx=.
+	  Ignored on Cortex-M.
+
+config PQC_FETCHTEST
+	bool "Arm diagnostic: instruction-fetch cost from flash vs SRAM (console 'fetchtest')"
+	default n
+	help
+	  Diagnostic image only, never a measured image. Adds small timing kernels to main.c, each
+	  compiled twice (flash .text and __ramfunc SRAM), plus the same load/store loops with the
+	  data in other SRAM banks, to find out why the PSoC 62 Cortex-M4 runs the crypto SLOWER
+	  from SRAM than from flash, and whether the RP2350 Cortex-M33 shows the same effect.
+	  Cortex-M4 and Cortex-M33 only.
+
+config PQC_CRYPTO_IN_IRAM
+	bool "Place the wolfSSL crypto working set in internal SRAM (IRAM/DRAM)"
+	default n
+	help
+	  Placement experiment (RQ1, ESP32-S3). When y, the SoC linker pulls the wolfSSL crypto
+	  objects' .text/.literal into IRAM and their .rodata into DRAM instead of executing from
+	  flash via the instruction cache. Requires the matching esp32s3/default.ld input-section
+	  patch (guarded on this symbol). Ignored on non-Xtensa targets.

@@ -1,0 +1,10 @@
+--- a/soc/raspberrypi/rpi_pico/rp2350/rom_start.ld
++++ b/soc/raspberrypi/rpi_pico/rp2350/rom_start.ld
+@@ -7,6 +7,7 @@
+  */
+ 
+ #if CONFIG_RP2_REQUIRES_IMAGE_DEFINITION_BLOCK
++. = ALIGN(4); /* keep the IMAGE_DEF marker word-aligned (Hazard3 cold boot) */
+ LONG(0xffffded3) /* PICOBIN_BLOCK_MARKER_START */
+ SHORT(0x0142) /* IMAGE_DEF Item */
+ #if defined(CONFIG_ARM)

@@ -1,0 +1,11 @@
+--- a/wolfssl/wolfcrypt/settings.h
++++ b/wolfssl/wolfcrypt/settings.h
+@@ -2887,7 +2887,7 @@
+     #endif
+ #endif
+ 
+-#if defined(__xtensa__)
++#if defined(__xtensa__) && !defined(WOLFSSL_XTENSA_FAST_C25519)
+     /* Compilers for Xtensa have been seen to compile C code into
+      * non-constant time assembly code. The small implementation is not known
+      * to have these issues. */
