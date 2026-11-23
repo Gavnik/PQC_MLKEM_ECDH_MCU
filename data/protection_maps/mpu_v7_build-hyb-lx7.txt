@@ -1,0 +1,7 @@
+
+mpu
+PMS: ESP32-S3 Permission Mgmt System  wx=pms  iram_text=[0x40374400..0x403983ac)
+PMS: lines main=0x40398400 I0=0x40398400 I1=0x40398400 | D0=0x3fca8400 D1=0x3fcc0100
+PMS: IRAM0 a0=R-X a1=R-X a2=R-X a3=---
+PMS: DRAM0 a0=R- a1=RW a2=R- a3=RW  (a1=[main,D0) a2=[D0,D1)=tables a3=[D1,end))
+PMS: locks split_lines=1 iram0_pms=1 dram0_pms=1 (1 = locked until chip reset)

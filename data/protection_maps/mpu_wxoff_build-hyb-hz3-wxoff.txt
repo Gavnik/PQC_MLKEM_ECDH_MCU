@@ -1,0 +1,6 @@
+
+mpu
+PMP wx=off  (cfg = raw CSR read; perms = HARDWARE perms after E6; CSR read order as written)
+PMP[8] cfg=0x1f hardwired
+PMP[9] cfg=0x1f hardwired
+PMP[10] cfg=0x1f hardwired

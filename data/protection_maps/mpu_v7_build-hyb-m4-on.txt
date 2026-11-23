@@ -1,0 +1,10 @@
+mpu
+MPU(PMSAv7) CTRL=0x00000005 regions=8
+MPU[0] base=0x10000000 size=2^21 AP=6 XN=0 EN=1
+MPU[1] base=0x08002000 size=2^20 AP=1 XN=1 EN=1
+MPU[2] base=0x08062000 size=2^11 AP=6 XN=0 EN=1
+MPU[3] base=0x08020000 size=2^17 AP=6 XN=0 EN=1
+MPU[4] base=0x08040000 size=2^17 AP=6 XN=1 EN=1
+MPU[5] base=0x0806f7c0 size=2^6 AP=5 XN=1 EN=1
+MPU[6] base=0x00000000 size=2^1 AP=0 XN=0 EN=0
+MPU[7] base=0x00000000 size=2^1 AP=0 XN=0 EN=0

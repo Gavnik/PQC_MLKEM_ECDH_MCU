@@ -1,0 +1,84 @@
+
+memtopo
+MEMTOPO cfg cpu_hz(config)=100000000 CM4_CLOCK_CTL=0x00000000 FAST_INT_DIV=0 CM0_CLOCK_CTL=0x00000100 SLOW_INT_DIV=1 PERI_INT_DIV=0
+MEMTOPO cfg RAM0_CTL0=0x00000000 FAST_WS=0 SLOW_WS=0
+MEMTOPO cfg RAM1_CTL0=0x00000000 FAST_WS=0 SLOW_WS=0
+MEMTOPO cfg RAM2_CTL0=0x00000000 FAST_WS=0 SLOW_WS=0
+MEMTOPO cfg ROM_CTL=0x00000000 FAST_WS=0 SLOW_WS=0
+MEMTOPO cfg FLASH_CTL=0x00000003 MAIN_WS=3 CM4_CA_CTL0=0xc0000000 CA_EN=1 PREF_EN=1
+MPU(PMSAv7) CTRL=0x00000005 regions=8
+MPU[0] base=0x10000000 size=2^21 AP=6 XN=0 EN=1 TEX=0 S=0 C=1 B=0 SRD=0x00
+MPU[1] base=0x08002000 size=2^20 AP=1 XN=1 EN=1 TEX=1 S=0 C=1 B=1 SRD=0x00
+MPU[2] base=0x08010000 size=2^16 AP=6 XN=0 EN=1 TEX=1 S=0 C=1 B=1 SRD=0x00
+MPU[3] base=0x0802f7c0 size=2^6 AP=5 XN=1 EN=1 TEX=1 S=0 C=1 B=1 SRD=0x00
+MPU[4] base=0x00000000 size=2^1 AP=0 XN=0 EN=0 TEX=0 S=0 C=0 B=0 SRD=0x00
+MPU[5] base=0x00000000 size=2^1 AP=0 XN=0 EN=0 TEX=0 S=0 C=0 B=0 SRD=0x00
+MPU[6] base=0x00000000 size=2^1 AP=0 XN=0 EN=0 TEX=0 S=0 C=0 B=0 SRD=0x00
+MPU[7] base=0x00000000 size=2^1 AP=0 XN=0 EN=0 TEX=0 S=0 C=0 B=0 SRD=0x00
+MEMTOPO image RAM ends at 0x08057cbc; windows code=0x08070000/0x08090000/0x080d0000 data=0x08078000/0x08098000/0x080d8000
+MEMTOPO using MPU region 7; kernel sizes alu16=136 alu32=264 ld16=136 ld32=264 st16=136 st32=264 B
+MEMTOPO kernel=alu16 code=flash data=none fn=0x10003a4c buf=0x00000000 instr=66000 cyc=67007 cpi_x1000=1015
+MEMTOPO kernel=alu16 code=SRAM0 data=none fn=0x08070000 buf=0x00000000 instr=66000 cyc=67007 cpi_x1000=1015
+MEMTOPO kernel=alu16 code=SRAM1 data=none fn=0x08090000 buf=0x00000000 instr=66000 cyc=67007 cpi_x1000=1015
+MEMTOPO kernel=alu16 code=SRAM2 data=none fn=0x080d0000 buf=0x00000000 instr=66000 cyc=67007 cpi_x1000=1015
+MEMTOPO kernel=alu32 code=flash data=none fn=0x10003ad4 buf=0x00000000 instr=66000 cyc=67007 cpi_x1000=1015
+MEMTOPO kernel=alu32 code=SRAM0 data=none fn=0x08070200 buf=0x00000000 instr=66000 cyc=67007 cpi_x1000=1015
+MEMTOPO kernel=alu32 code=SRAM1 data=none fn=0x08090200 buf=0x00000000 instr=66000 cyc=67007 cpi_x1000=1015
+MEMTOPO kernel=alu32 code=SRAM2 data=none fn=0x080d0200 buf=0x00000000 instr=66000 cyc=67007 cpi_x1000=1015
+MEMTOPO kernel=ld16 code=flash data=flash fn=0x10003bdc buf=0x1002c540 instr=66000 cyc=99007 cpi_x1000=1500
+MEMTOPO kernel=ld16 code=flash data=SRAM0 fn=0x10003bdc buf=0x08078000 instr=66000 cyc=68007 cpi_x1000=1030
+MEMTOPO kernel=ld16 code=flash data=SRAM1 fn=0x10003bdc buf=0x08098000 instr=66000 cyc=68007 cpi_x1000=1030
+MEMTOPO kernel=ld16 code=flash data=SRAM2 fn=0x10003bdc buf=0x080d8000 instr=66000 cyc=68007 cpi_x1000=1030
+MEMTOPO kernel=ld16 code=SRAM0 data=flash fn=0x08070400 buf=0x1002c540 instr=66000 cyc=68007 cpi_x1000=1030
+MEMTOPO kernel=ld16 code=SRAM0 data=SRAM0 fn=0x08070400 buf=0x08078000 instr=66000 cyc=99007 cpi_x1000=1500
+MEMTOPO kernel=ld16 code=SRAM0 data=SRAM1 fn=0x08070400 buf=0x08098000 instr=66000 cyc=99007 cpi_x1000=1500
+MEMTOPO kernel=ld16 code=SRAM0 data=SRAM2 fn=0x08070400 buf=0x080d8000 instr=66000 cyc=99007 cpi_x1000=1500
+MEMTOPO kernel=ld16 code=SRAM1 data=flash fn=0x08090400 buf=0x1002c540 instr=66000 cyc=68007 cpi_x1000=1030
+MEMTOPO kernel=ld16 code=SRAM1 data=SRAM0 fn=0x08090400 buf=0x08078000 instr=66000 cyc=99007 cpi_x1000=1500
+MEMTOPO kernel=ld16 code=SRAM1 data=SRAM1 fn=0x08090400 buf=0x08098000 instr=66000 cyc=99007 cpi_x1000=1500
+MEMTOPO kernel=ld16 code=SRAM1 data=SRAM2 fn=0x08090400 buf=0x080d8000 instr=66000 cyc=99007 cpi_x1000=1500
+MEMTOPO kernel=ld16 code=SRAM2 data=flash fn=0x080d0400 buf=0x1002c540 instr=66000 cyc=68007 cpi_x1000=1030
+MEMTOPO kernel=ld16 code=SRAM2 data=SRAM0 fn=0x080d0400 buf=0x08078000 instr=66000 cyc=99007 cpi_x1000=1500
+MEMTOPO kernel=ld16 code=SRAM2 data=SRAM1 fn=0x080d0400 buf=0x08098000 instr=66000 cyc=99007 cpi_x1000=1500
+MEMTOPO kernel=ld16 code=SRAM2 data=SRAM2 fn=0x080d0400 buf=0x080d8000 instr=66000 cyc=99007 cpi_x1000=1500
+MEMTOPO kernel=ld32 code=flash data=flash fn=0x10003c64 buf=0x1002c540 instr=66000 cyc=131007 cpi_x1000=1984
+MEMTOPO kernel=ld32 code=flash data=SRAM0 fn=0x10003c64 buf=0x08078000 instr=66000 cyc=68007 cpi_x1000=1030
+MEMTOPO kernel=ld32 code=flash data=SRAM1 fn=0x10003c64 buf=0x08098000 instr=66000 cyc=68007 cpi_x1000=1030
+MEMTOPO kernel=ld32 code=flash data=SRAM2 fn=0x10003c64 buf=0x080d8000 instr=66000 cyc=68007 cpi_x1000=1030
+MEMTOPO kernel=ld32 code=SRAM0 data=flash fn=0x08070600 buf=0x1002c540 instr=66000 cyc=68007 cpi_x1000=1030
+MEMTOPO kernel=ld32 code=SRAM0 data=SRAM0 fn=0x08070600 buf=0x08078000 instr=66000 cyc=131007 cpi_x1000=1984
+MEMTOPO kernel=ld32 code=SRAM0 data=SRAM1 fn=0x08070600 buf=0x08098000 instr=66000 cyc=131007 cpi_x1000=1984
+MEMTOPO kernel=ld32 code=SRAM0 data=SRAM2 fn=0x08070600 buf=0x080d8000 instr=66000 cyc=131007 cpi_x1000=1984
+MEMTOPO kernel=ld32 code=SRAM1 data=flash fn=0x08090600 buf=0x1002c540 instr=66000 cyc=68007 cpi_x1000=1030
+MEMTOPO kernel=ld32 code=SRAM1 data=SRAM0 fn=0x08090600 buf=0x08078000 instr=66000 cyc=131007 cpi_x1000=1984
+MEMTOPO kernel=ld32 code=SRAM1 data=SRAM1 fn=0x08090600 buf=0x08098000 instr=66000 cyc=131007 cpi_x1000=1984
+MEMTOPO kernel=ld32 code=SRAM1 data=SRAM2 fn=0x08090600 buf=0x080d8000 instr=66000 cyc=131007 cpi_x1000=1984
+MEMTOPO kernel=ld32 code=SRAM2 data=flash fn=0x080d0600 buf=0x1002c540 instr=66000 cyc=68007 cpi_x1000=1030
+MEMTOPO kernel=ld32 code=SRAM2 data=SRAM0 fn=0x080d0600 buf=0x08078000 instr=66000 cyc=131007 cpi_x1000=1984
+MEMTOPO kernel=ld32 code=SRAM2 data=SRAM1 fn=0x080d0600 buf=0x08098000 instr=66000 cyc=131007 cpi_x1000=1984
+MEMTOPO kernel=ld32 code=SRAM2 data=SRAM2 fn=0x080d0600 buf=0x080d8000 instr=66000 cyc=131007 cpi_x1000=1984
+MEMTOPO kernel=st16 code=flash data=SRAM0 fn=0x10003d6c buf=0x08078000 instr=66000 cyc=67007 cpi_x1000=1015
+MEMTOPO kernel=st16 code=flash data=SRAM1 fn=0x10003d6c buf=0x08098000 instr=66000 cyc=67007 cpi_x1000=1015
+MEMTOPO kernel=st16 code=flash data=SRAM2 fn=0x10003d6c buf=0x080d8000 instr=66000 cyc=67007 cpi_x1000=1015
+MEMTOPO kernel=st16 code=SRAM0 data=SRAM0 fn=0x08070800 buf=0x08078000 instr=66000 cyc=110007 cpi_x1000=1666
+MEMTOPO kernel=st16 code=SRAM0 data=SRAM1 fn=0x08070800 buf=0x08098000 instr=66000 cyc=99007 cpi_x1000=1500
+MEMTOPO kernel=st16 code=SRAM0 data=SRAM2 fn=0x08070800 buf=0x080d8000 instr=66000 cyc=99007 cpi_x1000=1500
+MEMTOPO kernel=st16 code=SRAM1 data=SRAM0 fn=0x08090800 buf=0x08078000 instr=66000 cyc=99007 cpi_x1000=1500
+MEMTOPO kernel=st16 code=SRAM1 data=SRAM1 fn=0x08090800 buf=0x08098000 instr=66000 cyc=110007 cpi_x1000=1666
+MEMTOPO kernel=st16 code=SRAM1 data=SRAM2 fn=0x08090800 buf=0x080d8000 instr=66000 cyc=99007 cpi_x1000=1500
+MEMTOPO kernel=st16 code=SRAM2 data=SRAM0 fn=0x080d0800 buf=0x08078000 instr=66000 cyc=99007 cpi_x1000=1500
+MEMTOPO kernel=st16 code=SRAM2 data=SRAM1 fn=0x080d0800 buf=0x08098000 instr=66000 cyc=99007 cpi_x1000=1500
+MEMTOPO kernel=st16 code=SRAM2 data=SRAM2 fn=0x080d0800 buf=0x080d8000 instr=66000 cyc=110007 cpi_x1000=1666
+MEMTOPO kernel=st32 code=flash data=SRAM0 fn=0x10003df4 buf=0x08078000 instr=66000 cyc=67007 cpi_x1000=1015
+MEMTOPO kernel=st32 code=flash data=SRAM1 fn=0x10003df4 buf=0x08098000 instr=66000 cyc=67007 cpi_x1000=1015
+MEMTOPO kernel=st32 code=flash data=SRAM2 fn=0x10003df4 buf=0x080d8000 instr=66000 cyc=67007 cpi_x1000=1015
+MEMTOPO kernel=st32 code=SRAM0 data=SRAM0 fn=0x08070a00 buf=0x08078000 instr=66000 cyc=153006 cpi_x1000=2318
+MEMTOPO kernel=st32 code=SRAM0 data=SRAM1 fn=0x08070a00 buf=0x08098000 instr=66000 cyc=131006 cpi_x1000=1984
+MEMTOPO kernel=st32 code=SRAM0 data=SRAM2 fn=0x08070a00 buf=0x080d8000 instr=66000 cyc=131006 cpi_x1000=1984
+MEMTOPO kernel=st32 code=SRAM1 data=SRAM0 fn=0x08090a00 buf=0x08078000 instr=66000 cyc=131006 cpi_x1000=1984
+MEMTOPO kernel=st32 code=SRAM1 data=SRAM1 fn=0x08090a00 buf=0x08098000 instr=66000 cyc=153006 cpi_x1000=2318
+MEMTOPO kernel=st32 code=SRAM1 data=SRAM2 fn=0x08090a00 buf=0x080d8000 instr=66000 cyc=131006 cpi_x1000=1984
+MEMTOPO kernel=st32 code=SRAM2 data=SRAM0 fn=0x080d0a00 buf=0x08078000 instr=66000 cyc=131006 cpi_x1000=1984
+MEMTOPO kernel=st32 code=SRAM2 data=SRAM1 fn=0x080d0a00 buf=0x08098000 instr=66000 cyc=131006 cpi_x1000=1984
+MEMTOPO kernel=st32 code=SRAM2 data=SRAM2 fn=0x080d0a00 buf=0x080d8000 instr=66000 cyc=153006 cpi_x1000=2318
+MEMTOPO done

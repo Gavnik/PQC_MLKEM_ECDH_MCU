@@ -1,0 +1,4 @@
+
+mpu
+PMS: ESP32-S3 Permission Mgmt System  wx=off  iram_text=[0x40374400..0x4039afe8)
+PMS: this image was built WITHOUT CONFIG_PQC_WX (no protection)

@@ -1,0 +1,12 @@
+
+mpu
+PMP wx=pmp  (cfg = raw CSR read; perms = HARDWARE perms after E6; CSR read order as written)
+PMP[0] cfg=0x9d L R-X [0x20000000..0x20020000) 128 KB
+PMP[1] cfg=0x9c L R-- [0x20020000..0x20030000) 64 KB
+PMP[2] cfg=0x9c L R-- [0x20030000..0x20038000) 32 KB
+PMP[3] cfg=0x9e L RW- [0x20000000..0x20080000) 512 KB
+PMP[4] cfg=0x9e L RW- [0x20080000..0x20082000) 8 KB
+PMP[5] cfg=0x9d L R-X [0x10000000..0x11000000) 16384 KB
+PMP[8] cfg=0x1f hardwired
+PMP[9] cfg=0x1f hardwired
+PMP[10] cfg=0x1f hardwired
